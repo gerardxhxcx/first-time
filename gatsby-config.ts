@@ -4,6 +4,8 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `First Site`,
     siteUrl: `https://www.yourdomain.tld`,
+    description: `Description first site`,
+    test: `testing attribute`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -13,6 +15,13 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/blog`,
+      }
+    }
   ],
 }
 
