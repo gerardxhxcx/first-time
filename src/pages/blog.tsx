@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HeadFC, PageProps, graphql, StaticQueryDocument } from 'gatsby'
+import { HeadFC, PageProps, graphql, StaticQueryDocument, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 
@@ -10,7 +10,11 @@ const Blog: React.FC<{data: any}> = ({data}) => {
             <ul>
                 {data.allMdx.nodes.map((mdx:any) => (
                     <article key={mdx.id}>
-                        <h2>{mdx.frontmatter.title}</h2>
+                        <h2>
+                            <Link to={`/blog/${mdx.frontmatter.slug}`}>
+                                {mdx.frontmatter.title}
+                            </Link>
+                        </h2>
                         <p>{`Posted: ${mdx.frontmatter.date}`}</p>
                         <p>{mdx.excerpt}</p>
                         <p>{`Modified: ${mdx.parent.modifiedTime}`}</p>
@@ -34,6 +38,7 @@ export const query: StaticQueryDocument = graphql`
                 frontmatter {
                     date(formatString: "MMMM D, YYYY")
                     title
+                    slug
                 }
                 id
                 excerpt
