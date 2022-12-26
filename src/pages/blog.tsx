@@ -8,8 +8,13 @@ const Blog: React.FC<{data: any}> = ({data}) => {
     return (
         <Layout pageTitle="My Blog Posts">
             <ul>
-                {data.allFile.nodes.map((node:any) => (
-                    <li key={node.name}>{node.name}</li>
+                {data.allMdx.nodes.map((mdx:any) => (
+                    <article key={mdx.id}>
+                        <h2>{mdx.frontmatter.title}</h2>
+                        <p>{`Posted: ${mdx.frontmatter.date}`}</p>
+                        <p>{mdx.excerpt}</p>
+                        <p>{`Modified: ${mdx.parent.modifiedTime}`}</p>
+                    </article>
                 ))}
             </ul>
         </Layout>
@@ -24,9 +29,19 @@ export const Head: HeadFC = () => (
 
 export const query: StaticQueryDocument = graphql`
     query{
-        allFile(filter: {sourceInstanceName: {eq: "blog"}}){
-            nodes{
-                name
+        allMdx(sort: {frontmatter: {date: DESC}}) {
+            nodes {
+                frontmatter {
+                    date(formatString: "MMMM D, YYYY")
+                    title
+                }
+                id
+                excerpt
+                parent {
+                    ... on File {
+                        modifiedTime(formatString: "MMMM D, YYYY")
+                    }
+                }
             }
         }
     }
