@@ -1,0 +1,34 @@
+.container {
+  margin: auto;
+  max-width: 500px;
+  font-family: sans-serif;
+}
+.heading {
+  color: var(--heading);
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  padding-left: 0;
+}
+.nav-link-item{
+  padding-right: 2rem;
+}
+.nav-link-text{
+  color: var(--black);
+}
+
+.list-style{
+  &-one{
+    background: black;
+    color: red;
+  }
+  &-two{
+    background: white;
+    color: gray;
+  }
+  &-three{
+    background: gray;
+    color: violet;
+  }
+}
