@@ -11,11 +11,20 @@ module.exports = {
   transformIgnorePatterns: [`node_modules/(?!(gatsby|gatsby-script|gatsby-link)/)`],
   globals: {
     __PATH_PREFIX__: ``,
-  },
+  },  
+  testEnvironment: `jsdom`,
+  setupFilesAfterEnv: ["<rootDir>/setup-test-env.js"],
   testEnvironmentOptions: {
     url: `http://localhost`,
   },
   setupFiles: [`<rootDir>/loadershim.js`],
-  roots: ['<rootDir>']
+  roots: ['<rootDir>'],
+  collectCoverage: true,
+  collectCoverageFrom: [`<rootDir>/src/**`],
+  coverageThreshold: {
+    global: {
+      lines: 100
+    }
+  }
 }
 
