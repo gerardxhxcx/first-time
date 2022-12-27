@@ -21,15 +21,15 @@
 .list-style{
   &-one{
     background: black;
-    color: red;
+    color: rgb(255, 255, 255);
   }
   &-two{
     background: white;
-    color: gray;
+    color: black;
   }
   &-three{
-    background: gray;
-    color: violet;
+    background: rgb(209, 209, 209);
+    color: rgb(112, 0, 112);
   }
 }
 
